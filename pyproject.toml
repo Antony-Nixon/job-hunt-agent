@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "job-hunt-agent"
+version = "0.2.0"
+description = "Local, review-first job-hunt workflow tooling"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+gmail = ["google-api-python-client>=2", "google-auth-httplib2>=0.2", "google-auth-oauthlib>=1", "keyring>=25"]
+
+[project.scripts]
+job-hunt-agent = "job_hunt_agent.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
