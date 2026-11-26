@@ -1,0 +1,19 @@
+# Copy to a local, untracked configuration file before use.
+# External actions remain disabled until explicitly enabled by a later milestone.
+
+[runtime]
+environment = "development"
+external_actions_enabled = false
+
+[storage]
+database_url = "sqlite:///job_hunt_agent.db"
+
+[sources]
+# Start with manually exported JSON only. Add a live source only after its access
+# method and terms have been reviewed and recorded.
+permitted_sources = []
+public_board_providers = ["greenhouse", "lever", "ashby"]
+
+[scoring]
+minimum_review_score = 0.80
+
