@@ -34,7 +34,8 @@ Automation reduces repetitive work; the candidate remains the authority for fact
 
 | Path | Purpose |
 |---|---|
-| `PROJECT_OVERVIEW.md` | Product scope and intended workflow |
+| `src/job_hunt_agent/` | Sanitized application modules and domain logic |
+| `tests/` | Local workflow, safety, data, and rendering regression tests |
 | `01_GOVERNANCE/` | Public safety and operating rules |
 | `04_ARCHITECTURE/` | System boundaries and state flow |
 | `05_DATA/` | Public data-handling policy and schema guidance |
@@ -42,11 +43,22 @@ Automation reduces repetitive work; the candidate remains the authority for fact
 | `config.example.toml` | Non-secret configuration shape |
 | `pyproject.toml` | Python project metadata and tooling direction |
 
-This public snapshot intentionally contains design documentation and safe configuration examples only. Private profiles, resumes, databases, credentials, deployment material, and local operational notes remain outside the public repository.
+Private profiles, resumes, databases, credentials, deployment material, hosted migration files, and local operational notes remain outside the public repository.
 
 ## Local development
 
-The complete working tree is maintained privately while the public release surface is being scrubbed and modularized. Before publishing implementation code, each file must pass the project’s public-release checklist for personal-data, secret, and internal-workflow leakage.
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -e ".[dev]"
+python -m pytest -q
+```
+
+The deterministic provider and local workflow are the safest starting points. Gmail and hosted integrations are optional and require explicit local configuration.
+
+## Verification
+
+The public-safe test set covers schemas, scoring, storage, evidence review, retention, drafting, local Gmail parsing, and workflow behavior. Tests that depend on excluded private deployment migration files are intentionally not published.
 
 ## Documentation
 
@@ -58,7 +70,7 @@ The complete working tree is maintained privately while the public release surfa
 
 ## Project status
 
-Active private MVP with a public architecture snapshot. The next release milestone is a minimal, reproducible code path containing only sanitized examples and tests.
+Active MVP with a sanitized public implementation. Private integrations and deployment experiments remain separated from the portfolio release.
 
 ## License
 
